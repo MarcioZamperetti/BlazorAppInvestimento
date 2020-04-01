@@ -1,0 +1,157 @@
+﻿@page "/investimentos"
+@using System.Globalization
+@using BlazorAppInvestimentos.Data
+@inject IJSRuntime JSRuntime
+@inherits calculosJurosCompostos
+
+<h3>investimentos</h3>
+
+<div class="calc-container">
+    <div class="form-group row">
+        <label for="initialvalue" class="col-sm-8 col-form-label">Valor Inicial:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                </div>
+                <input id="initialvalue" class="form-control input-lg" inputmode="decimal" @bind-value="Data.valorInicialString" @oninput="@(e => OnInput(e, x => Data.valorInicial = x))"
+                       @onfocusin="@(e => OnFocusIn(Data.valorInicial, Data.valorInicialString, y => Data.valorInicialString = y))"
+                       @onfocusout="@(e => OnFocusOut(Format.Currency, Data.valorInicial, y => Data.valorInicialString = y))" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="monthlycontribution" class="col-sm-8 col-form-label">Aportes Mensais:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                </div>
+                <input id="monthlycontribution" class="form-control input-lg" inputmode="decimal" @bind="Data.aporteMensalString" @oninput="@(e => OnInput(e, x => Data.aporteMensal = x))"
+                    @onfocusin="@(e => OnFocusIn(Data.aporteMensal, Data.aporteMensalString, y => Data.aporteMensalString = y))"
+                    @onfocusout="@(e => OnFocusOut(Format.Currency, Data.aporteMensal, y => Data.aporteMensalString = y))" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="numyears" class="col-sm-8 col-form-label">Numero de Meses:</label>
+        <div class="col-sm-4">
+            <input id="numyears" class="form-control input-lg" inputmode="decimal" @bind="Data.numeroDeAnosString" @oninput="@(e => OnInput(e, x => Data.numeroDeMeses = x))"
+                @onfocusout="@(e => OnFocusOut(Format.None, Data.numeroDeMeses, y => Data.numeroDeAnosString = y))" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="annualreturn" class="col-sm-8 col-form-label">Juros Mensais:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input id="annualreturn" class="form-control input-lg" inputmode="decimal" @bind="Data.jurosAnualString" @oninput="@(e => OnInput(e, x => Data.jurosMensais = x))"
+                    @onfocusin="@(e => OnFocusIn(Data.jurosMensais, Data.jurosAnualString, y => Data.jurosAnualString = y))"
+                    @onfocusout="@(e => OnFocusOut(Format.Percent, Data.jurosMensais, y => Data.jurosAnualString = y))" />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-12 text-right">
+                <button @onclick="ResetAll" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+
+    <div class="form-group row highlight-color">
+        <label for="futurevalue" class="col-sm-8 col-form-label">Valor Total:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                </div>
+                <input id="futurevalue" class="form-control input-lg" readonly @bind="Data.montanteTotal" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row highlight-grey">
+        <label for="totalcontributions" class="col-sm-8 col-form-label">Aportes Totais:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                </div>
+                <input id="totalcontributions" class="form-control input-lg" readonly @bind="Data.aportesTotais" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group row highlight-grey">
+        <label for="interestearnings" class="col-sm-8 col-form-label">Juros Totais:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                </div>
+                <input id="interestearnings" class="form-control input-lg" readonly @bind="Data.jurosTotais" />
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+    calculosJurosCompostos Data = new calculosJurosCompostos();
+
+    private void OnInput(ChangeEventArgs e, Action<double> setProperty)
+    {
+        try
+        {
+            setProperty(Math.Round(Double.Parse(e.Value.ToString()), 2));
+        }
+        catch (Exception ex)
+        {
+            setProperty(0);
+        }
+        UpdateAll();
+    }
+
+    private void OnFocusIn(double propValue, string stringValue, Action<string> setString)
+    {
+        if (!string.IsNullOrEmpty(stringValue))
+            setString(String.Format("{0:0.##}", propValue));
+    }
+
+    private void OnFocusOut(Format format, double propValue, Action<string> setString)
+    {
+        switch (format)
+        {
+            case (Format.Currency):
+                setString(String.Format("{0:N0}", propValue));
+                break;
+            case (Format.Percent):
+                setString(String.Format("{0:N2}", propValue));
+                break;
+            case (Format.None):
+                setString(propValue.ToString());
+                break;
+        }
+    }
+
+    private void UpdateAll()
+    {
+        Data.CalculaMontante();
+        SetStrings();
+
+    }
+
+    private void SetStrings()
+    {
+        if (!double.IsNaN(Data.montante))
+        {
+            Data.montanteTotal = String.Format("{0:N2}", Data.montante);
+            Data.aportesTotais = String.Format("{0:N2}", Data.investimentoTotal);
+            Data.jurosTotais = String.Format("{0:N2}", Data.jurosTotal);
+        }
+    }
+
+    private void ResetAll()
+    {
+        Data = new calculosJurosCompostos();
+    }
+}
