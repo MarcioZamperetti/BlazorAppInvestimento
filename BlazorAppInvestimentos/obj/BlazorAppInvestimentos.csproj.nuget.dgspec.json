@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Aplicacoes\\BlazorAppInvestimentos\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj": {}
+    "D:\\Aplicacoes\\BlazorAppInvestimento\\BlazorAppInvestimento\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj": {}
   },
   "projects": {
-    "D:\\Aplicacoes\\BlazorAppInvestimentos\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj": {
+    "D:\\Aplicacoes\\BlazorAppInvestimento\\BlazorAppInvestimento\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Aplicacoes\\BlazorAppInvestimentos\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj",
+        "projectUniqueName": "D:\\Aplicacoes\\BlazorAppInvestimento\\BlazorAppInvestimento\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj",
         "projectName": "BlazorAppInvestimentos",
-        "projectPath": "D:\\Aplicacoes\\BlazorAppInvestimentos\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj",
+        "projectPath": "D:\\Aplicacoes\\BlazorAppInvestimento\\BlazorAppInvestimento\\BlazorAppInvestimentos\\BlazorAppInvestimentos.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "D:\\Aplicacoes\\BlazorAppInvestimentos\\BlazorAppInvestimentos\\obj\\",
+        "outputPath": "D:\\Aplicacoes\\BlazorAppInvestimento\\BlazorAppInvestimento\\BlazorAppInvestimentos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "ChartJs.Blazor": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

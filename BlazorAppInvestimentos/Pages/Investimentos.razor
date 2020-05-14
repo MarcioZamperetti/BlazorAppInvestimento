@@ -3,97 +3,110 @@
 @using BlazorAppInvestimentos.Data
 @inject IJSRuntime JSRuntime
 @inherits calculosJurosCompostos
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.PieChart
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.Util
+
 
 <h3>investimentos</h3>
 
-<div class="calc-container">
-    <div class="form-group row">
-        <label for="initialvalue" class="col-sm-8 col-form-label">Valor Inicial:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
-                </div>
-                <input id="initialvalue" class="form-control input-lg" inputmode="decimal" @bind-value="Data.valorInicialString" @oninput="@(e => OnInput(e, x => Data.valorInicial = x))"
-                       @onfocusin="@(e => OnFocusIn(Data.valorInicial, Data.valorInicialString, y => Data.valorInicialString = y))"
-                       @onfocusout="@(e => OnFocusOut(Format.Currency, Data.valorInicial, y => Data.valorInicialString = y))" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="monthlycontribution" class="col-sm-8 col-form-label">Aportes Mensais:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
-                </div>
-                <input id="monthlycontribution" class="form-control input-lg" inputmode="decimal" @bind="Data.aporteMensalString" @oninput="@(e => OnInput(e, x => Data.aporteMensal = x))"
-                    @onfocusin="@(e => OnFocusIn(Data.aporteMensal, Data.aporteMensalString, y => Data.aporteMensalString = y))"
-                    @onfocusout="@(e => OnFocusOut(Format.Currency, Data.aporteMensal, y => Data.aporteMensalString = y))" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="numyears" class="col-sm-8 col-form-label">Numero de Meses:</label>
-        <div class="col-sm-4">
-            <input id="numyears" class="form-control input-lg" inputmode="decimal" @bind="Data.numeroDeAnosString" @oninput="@(e => OnInput(e, x => Data.numeroDeMeses = x))"
-                @onfocusout="@(e => OnFocusOut(Format.None, Data.numeroDeMeses, y => Data.numeroDeAnosString = y))" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="annualreturn" class="col-sm-8 col-form-label">Juros Mensais:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <input id="annualreturn" class="form-control input-lg" inputmode="decimal" @bind="Data.jurosAnualString" @oninput="@(e => OnInput(e, x => Data.jurosMensais = x))"
-                    @onfocusin="@(e => OnFocusIn(Data.jurosMensais, Data.jurosAnualString, y => Data.jurosAnualString = y))"
-                    @onfocusout="@(e => OnFocusOut(Format.Percent, Data.jurosMensais, y => Data.jurosAnualString = y))" />
-                <div class="input-group-append">
-                    <span class="input-group-text">%</span>
+<div cass="div-container">
+    <div class="calc-container">
+        <div class="form-group row">
+            <label for="initialvalue" class="col-sm-8 col-form-label">Valor Inicial:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                    </div>
+                    <input id="initialvalue" class="form-control input-lg" inputmode="decimal" @bind-value="Data.valorInicialString" @oninput="@(e => OnInput(e, x => Data.valorInicial = x))"
+                           @onfocusin="@(e => OnFocusIn(Data.valorInicial, Data.valorInicialString, y => Data.valorInicialString = y))"
+                           @onfocusout="@(e => OnFocusOut(Format.Currency, Data.valorInicial, y => Data.valorInicialString = y))" />
                 </div>
             </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <label for="monthlycontribution" class="col-sm-8 col-form-label">Aportes Mensais:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                    </div>
+                    <input id="monthlycontribution" class="form-control input-lg" inputmode="decimal" @bind="Data.aporteMensalString" @oninput="@(e => OnInput(e, x => Data.aporteMensal = x))"
+                           @onfocusin="@(e => OnFocusIn(Data.aporteMensal, Data.aporteMensalString, y => Data.aporteMensalString = y))"
+                           @onfocusout="@(e => OnFocusOut(Format.Currency, Data.aporteMensal, y => Data.aporteMensalString = y))" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="numyears" class="col-sm-8 col-form-label">Numero de Meses:</label>
+            <div class="col-sm-4">
+                <input id="numyears" class="form-control input-lg" inputmode="decimal" @bind="Data.numeroDeAnosString" @oninput="@(e => OnInput(e, x => Data.numeroDeMeses = x))"
+                       @onfocusout="@(e => OnFocusOut(Format.None, Data.numeroDeMeses, y => Data.numeroDeAnosString = y))" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="annualreturn" class="col-sm-8 col-form-label">Juros Mensais:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input id="annualreturn" class="form-control input-lg" inputmode="decimal" @bind="Data.jurosAnualString" @oninput="@(e => OnInput(e, x => Data.jurosMensais = x))"
+                           @onfocusin="@(e => OnFocusIn(Data.jurosMensais, Data.jurosAnualString, y => Data.jurosAnualString = y))"
+                           @onfocusout="@(e => OnFocusOut(Format.Percent, Data.jurosMensais, y => Data.jurosAnualString = y))" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="form-group row">
-        <div class="col-12 text-right">
+        <div class="form-group row">
+            <div class="col-12 text-right">
                 <button @onclick="ResetAll" class="btn btn-secondary">Reset</button>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group row highlight-color">
-        <label for="futurevalue" class="col-sm-8 col-form-label">Valor Total:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+        <div class="form-group row highlight-color">
+            <label for="futurevalue" class="col-sm-8 col-form-label">Valor Total:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                    </div>
+                    <input id="futurevalue" class="form-control input-lg" readonly @bind="Data.montanteTotal" />
                 </div>
-                <input id="futurevalue" class="form-control input-lg" readonly @bind="Data.montanteTotal" />
+            </div>
+        </div>
+        <div class="form-group row highlight-grey">
+            <label for="totalcontributions" class="col-sm-8 col-form-label">Aportes Totais:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                    </div>
+                    <input id="totalcontributions" class="form-control input-lg" readonly @bind="Data.aportesTotais" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row highlight-grey">
+            <label for="interestearnings" class="col-sm-8 col-form-label">Juros Totais:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                    </div>
+                    <input id="interestearnings" class="form-control input-lg" readonly @bind="Data.jurosTotais" />
+                </div>
             </div>
         </div>
     </div>
-    <div class="form-group row highlight-grey">
-        <label for="totalcontributions" class="col-sm-8 col-form-label">Aportes Totais:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
-                </div>
-                <input id="totalcontributions" class="form-control input-lg" readonly @bind="Data.aportesTotais" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group row highlight-grey">
-        <label for="interestearnings" class="col-sm-8 col-form-label">Juros Totais:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
-                </div>
-                <input id="interestearnings" class="form-control input-lg" readonly @bind="Data.jurosTotais" />
-            </div>
-        </div>
+    <div class="grafic-container">
+        <ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="500" Height="500" />
     </div>
 </div>
+
+
+
 @code {
 
     calculosJurosCompostos Data = new calculosJurosCompostos();
@@ -138,6 +151,21 @@
         Data.CalculaMontante();
         SetStrings();
 
+        // Atualiza Gráfico
+        var pieSet = new PieDataset
+        {
+            BackgroundColor = new[] { ColorUtil.ColorString(190, 224, 175), ColorUtil.ColorString(163, 178, 227) },
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff",
+        };
+
+        pieSet.Data.AddRange(new double[] { Math.Round(Data.investimentoTotal, 2), Math.Round(Data.jurosTotal, 2) });
+        _config.Data.Datasets.Clear();
+        _config.Data.Datasets.Add(pieSet);
+
     }
 
     private void SetStrings()
@@ -153,5 +181,47 @@
     private void ResetAll()
     {
         Data = new calculosJurosCompostos();
+        _config.Data.Datasets.Clear();
+    }
+
+    //Gráfico
+
+    private PieConfig _config;
+    private ChartJsPieChart _pieChartJs;
+
+    protected override void OnInitialized()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Gráfico Investimento"
+                },
+                Responsive = false,
+                Animation = new ArcAnimation
+                {
+                    AnimateRotate = true,
+                    AnimateScale = true
+                }
+            }
+        };
+
+        _config.Data.Labels.AddRange(new[] { "Aportes Totais", "Juros Totais" });
+
+        var pieSet = new PieDataset
+        {
+            BackgroundColor = new[] { ColorUtil.ColorString(190, 224, 175), ColorUtil.ColorString(163, 178, 227), ColorUtil.ColorString(227, 141, 175) },
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff",
+        };
+
+        pieSet.Data.AddRange(new double[] { 0, 0 });
+        _config.Data.Datasets.Add(pieSet);
     }
 }

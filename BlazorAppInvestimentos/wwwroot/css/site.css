@@ -102,18 +102,30 @@ app {
     }
 
 .calc-container {
-    max-width: 600px;
+    min-width: 600px;
+    display: inline-block !important;
 }
 
-    .calc-container .highlight-color {
-        background-color: #cadfe0;
-        padding: .75em;
-    }
+.div-container {
+    height: 100%;
+    display: flex !important;
+}
 
-    .calc-container .highlight-grey {
-        background-color: #ddd;
-        padding: .75em;
-    }
+.grafic-container {
+    min-width: 600px;
+    display: inline-block !important;
+    float: right;
+}
+
+.calc-container .highlight-color {
+    background-color: #cadfe0;
+    padding: .75em;
+}
+
+.calc-container .highlight-grey {
+    background-color: #ddd;
+    padding: .75em;
+}
 
 .home-container {
     max-width: 800px;
