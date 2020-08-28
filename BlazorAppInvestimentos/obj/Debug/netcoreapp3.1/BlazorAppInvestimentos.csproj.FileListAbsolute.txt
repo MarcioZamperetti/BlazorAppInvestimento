@@ -112,9 +112,7 @@ D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\BlazorAppInvestimentos.csprojAssemblyReference.cache
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\BlazorAppInvestimentos.RazorComponent.input.cache
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
-D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Counter.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Error.razor.g.cs
-D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\FetchData.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Investimentos.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -144,9 +142,7 @@ D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\BlazorAppInvestimentos.MvcApplicationPartsAssemblyInfo.cache
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\RazorDeclaration\BlazorAppInvestimentos.dll
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
-D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Pages\Counter.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Pages\Error.razor.g.cs
-D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Pages\FetchData.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Pages\Investimentos.razor.g.cs
 D:\Aplicacoes\BlazorAppInvestimento\BlazorAppInvestimento\BlazorAppInvestimentos\obj\Debug\netcoreapp3.1\Razor\Shared\MainLayout.razor.g.cs
